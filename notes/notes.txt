@@ -1,0 +1,2 @@
+
+    Enity - nél az ID fieldnél kell AI generation annotáció , ha mysql-ben definiálva van?
