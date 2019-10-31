@@ -12,18 +12,19 @@
         <th> Name </th>
         <th> Date of birth </th>
         <th> Country </th>
-        <th> Trainer ID </th>
+        <th> Trainer name </th>
     </tr>
     </thead>
 
     <tbody>
         <tr th:if="${players.empty}">
-            <td colspan="2"> No Books Available </td>
+            <td colspan="2"> No players Available </td>
         </tr>
         <tr th:each="pl : ${players}">
             <td><span th:text="${pl.name }"> n </span></td>
             <td><span th:text="${pl.birthDate}"> bd </span></td>
-            <td><span th:text="${pl.countryCode}"> bd </span></td>
+            <td><span th:text="${pl.country.name}"> bd </span></td>
+            <td><span th:text="${pl.trainer.name}"> bd </span></td>
         </tr>
     </tbody>
 

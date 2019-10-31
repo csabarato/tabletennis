@@ -3,9 +3,10 @@ package com.csabarato.tabletennis.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "Player")
+@Table(name = "player")
 public class Player {
 
     @Id
@@ -19,19 +20,29 @@ public class Player {
     @NotNull
     private Date birthDate;
 
-    private int trainerID;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trainerID")
+    private Trainer trainer;
 
-    @Column(name = "countrycode")
-    @NotNull
-    private String countryCode;
+    @ManyToOne
+    @JoinColumn(name = "countrycode", nullable = false)
+    private Country country;
+
+    @ManyToMany
+    @JoinTable(
+            name = "player_competition",
+            joinColumns = @JoinColumn(name ="playerID"),
+            inverseJoinColumns = @JoinColumn(name = "competitionID")
+    )
+    Set<Competition> attendedCompetitions;
 
     public Player(){}
 
-    public Player(String name, Date birthDate, int trainerID, String countryCode) {
+    public Player(String name, Date birthDate, Trainer trainer, Country country) {
         this.name = name;
         this.birthDate = birthDate;
-        this.trainerID = trainerID;
-        this.countryCode = countryCode;
+        this.trainer = trainer;
+        this.country = country;
     }
 
     public int getPlayerID() {
@@ -58,19 +69,31 @@ public class Player {
         this.birthDate = birthDate;
     }
 
-    public int getTrainerID() {
-        return trainerID;
+    public Trainer getTrainer() {
+        return this.trainer ;
     }
 
-    public void setTrainerID(int trainerID) {
-        this.trainerID = trainerID;
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public void setPlayerID(Integer playerID) {
+        this.playerID = playerID;
+    }
+
+    public Set<Competition> getAttendedCompetitions() {
+        return attendedCompetitions;
+    }
+
+    public void setAttendedCompetitions(Set<Competition> attendedCompetitions) {
+        this.attendedCompetitions = attendedCompetitions;
     }
 }

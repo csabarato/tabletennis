@@ -1,5 +1,6 @@
 package com.csabarato.tabletennis.controller;
 
+import com.csabarato.tabletennis.model.Player;
 import com.csabarato.tabletennis.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,16 @@ public class PlayerController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAllPlayers(Model model){
-
         model.addAttribute("players", playerService.getAllPlayers());
         return "playerResources/players";
     }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String getNewPlayerForm(Model model){
+        model.addAttribute("player", new Player());
+        return "playerResources/playerForm";
+    }
+
+
 
 }
