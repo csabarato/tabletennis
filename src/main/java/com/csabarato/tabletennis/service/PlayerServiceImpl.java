@@ -15,7 +15,9 @@ public class PlayerServiceImpl implements PlayerService {
     PlayerRepository playerRepository;
 
     @Override
-    public ArrayList<Player> getAllPlayers() {
-        return (ArrayList<Player>) playerRepository.findAll();
+    public List<Player> getAllPlayers() {
+        List<Player> players = new ArrayList<>();
+        playerRepository.findAll().forEach(i -> players.add(i));
+        return players;
     }
 }
