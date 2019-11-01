@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PlayerService {
 
-    List<Player> getAllPlayers();
+    List<Player> getAll();
+
+    Player save(Player newPlayer);
 
 }

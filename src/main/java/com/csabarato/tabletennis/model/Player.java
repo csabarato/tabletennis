@@ -1,5 +1,7 @@
 package com.csabarato.tabletennis.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Set;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Integer playerID;
 
@@ -18,6 +21,7 @@ public class Player {
 
     @Column(name = "birthdate")
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date birthDate;
 
     @OneToOne(cascade = CascadeType.ALL)
