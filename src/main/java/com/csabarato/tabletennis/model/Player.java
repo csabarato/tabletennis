@@ -13,7 +13,6 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Integer playerID;
 
     @NotNull
@@ -49,11 +48,11 @@ public class Player {
         this.country = country;
     }
 
-    public int getPlayerID() {
+    public Integer getPlayerID() {
         return playerID;
     }
 
-    public void setPlayerID(int playerID) {
+    public void setPlayerID(Integer playerID) {
         this.playerID = playerID;
     }
 
@@ -87,10 +86,6 @@ public class Player {
 
     public void setCountry(Country country) {
         this.country = country;
-    }
-
-    public void setPlayerID(Integer playerID) {
-        this.playerID = playerID;
     }
 
     public Set<Competition> getAttendedCompetitions() {

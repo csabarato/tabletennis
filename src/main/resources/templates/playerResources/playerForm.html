@@ -8,16 +8,15 @@
 
     <form th:object="${player}" th:action="@{add}" method="post" >
 
-
         <label> Name</label>
         <input type="text" th:field="*{name}" />
 
         <label>Date of birth</label>
         <input type="date" th:field = "*{birthDate}" />
 
-        <select th:field="*{country}" >
+        <select th:field="*{country.countryCode}">
             <option value="0">select country</option>
-            <option th:each="country : ${countries}" th:value="${country}" th:text="${country.name}"></option>
+            <option th:each="c : ${countries}" th:value="${c.countryCode}" th:text="${c.name}"></option>
         </select>
 
         <button type="submit">Submit</button>

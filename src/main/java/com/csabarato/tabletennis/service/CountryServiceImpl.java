@@ -20,4 +20,9 @@ public class CountryServiceImpl implements CountryService {
         countryRepository.findAll().forEach(i -> countries.add(i));
         return countries;
     }
+
+    @Override
+    public Country getByCountryCode(String countryCode) {
+        return countryRepository.findCountryByCountryCode(countryCode);
+    }
 }
