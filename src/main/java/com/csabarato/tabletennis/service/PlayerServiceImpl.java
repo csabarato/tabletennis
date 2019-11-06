@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -21,8 +22,18 @@ public class PlayerServiceImpl implements PlayerService {
         return players;
     }
 
+    public Player getById(Integer id){
+        return playerRepository.findById(id).get();
+    }
+
     @Override
     public Player save(Player newPlayer) {
         return playerRepository.save(newPlayer);
+    }
+
+    public Player update(Integer id, Player updatedPlayer){
+
+        Optional<Player> player = playerRepository.findById(id);
+        return  playerRepository.save(updatedPlayer);
     }
 }

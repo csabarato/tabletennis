@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form th:object="${player}" th:action="@{add}" method="post" >
+    <form th:object="${player}" th:action="@{/players/add}" method="post" >
 
         <label> Name</label>
         <input type="text" th:field="*{name}" />
@@ -18,9 +18,13 @@
             <option value="0">select country</option>
             <option th:each="c : ${countries}" th:value="${c.countryCode}" th:text="${c.name}"></option>
         </select>
+        <select th:field="*{trainer.trainerID}">
+            <option value="0" th:if="${trainers.empty}"> No available trainer </option>
+            <option value="0" th:if="${! trainers.empty}"> Select trainer </option>
 
+            <option th:each="t : ${trainers}" th:value="${t.trainerID}" th:text="${t.name}"></option>
+        </select>
         <button type="submit">Submit</button>
     </form>
-
 </body>
 </html>

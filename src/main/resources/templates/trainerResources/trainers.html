@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th> Name </th>
+        <th> Country </th>
+        <th> Player name </th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="t : ${trainers}">
+        <td><span th:text="${t.name }"> n </span></td>
+        <td><span th:text="${t.country.name}"> c </span></td>
+        <td><span th:text="${t.player} ? ${t.player.name} : Unassigned "> pl </span></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

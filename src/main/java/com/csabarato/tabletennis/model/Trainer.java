@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 public class Trainer {
 
     @Id
-    @NotNull
     private Integer trainerID;
 
     @NotNull
@@ -17,6 +16,9 @@ public class Trainer {
     @ManyToOne
     @JoinColumn(name = "countrycode", nullable = false)
     private Country country;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER,  mappedBy = "trainer")
+    private Player player;
 
     public Trainer() {
     }
@@ -48,5 +50,13 @@ public class Trainer {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

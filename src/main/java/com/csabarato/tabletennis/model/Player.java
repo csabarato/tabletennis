@@ -23,7 +23,7 @@ public class Player {
     @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "trainerID")
     private Trainer trainer;
 

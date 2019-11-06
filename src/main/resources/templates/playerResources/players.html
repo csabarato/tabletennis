@@ -22,7 +22,7 @@
             <td><span th:text="${pl.name }"> n </span></td>
             <td><span th:text="${pl.birthDate}"> bd </span></td>
             <td><span th:text="${pl.country.name}"> bd </span></td>
-            <td><span th:text="${pl.trainer} ? ${pl.trainer.name} : Unknown "> bd </span></td>
+            <td><span th:text="${pl.trainer} ? ${pl.trainer.name} : Unassigned "> tr </span></td>
         </tr>
     </tbody>
 

@@ -8,6 +8,10 @@ public interface PlayerService {
 
     List<Player> getAll();
 
+    Player getById(Integer id);
+
     Player save(Player newPlayer);
+
+    Player update(Integer id , Player player);
 
 }
