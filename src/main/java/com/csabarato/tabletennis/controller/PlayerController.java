@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.stream.Collectors;
-
 @Controller
 @RequestMapping(value = "/players")
 public class PlayerController {
@@ -33,6 +31,21 @@ public class PlayerController {
         return "playerResources/players";
     }
 
+    @RequestMapping(value="/add", method = RequestMethod.POST)
+    public String saveOrUpdatePlayer(@ModelAttribute Player playerToSave){
+
+        String countryCode = playerToSave.getCountry().getCountryCode();
+        Integer trainerId = playerToSave.getTrainer().getTrainerID();
+
+        playerToSave.setCountry(countryService.getByCountryCode(countryCode));
+        playerToSave.setTrainer(trainerService.getById(trainerId));
+
+        // save OR update !!!
+        playerService.saveOrUpdate(playerToSave);
+        return "redirect:list";
+    }
+
+    // GET mappings to return Forms to browser.
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String getNewPlayerForm(Model model){
 
@@ -42,20 +55,7 @@ public class PlayerController {
         return "playerResources/playerForm";
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST)
-    public String addNewPlayer(@ModelAttribute Player newPlayer){
-
-        String countryCode = newPlayer.getCountry().getCountryCode();
-        Integer trainerId = newPlayer.getTrainer().getTrainerID();
-
-        newPlayer.setCountry(countryService.getByCountryCode(countryCode));
-        newPlayer.setTrainer(trainerService.getById(trainerId));
-
-        playerService.save(newPlayer);
-        return "redirect:list";
-    }
-
-    @RequestMapping(value = "/update/{id}")
+    @RequestMapping(value = "/update/{id}" , method = RequestMethod.GET)
     public String getUpdatePlayerForm( @PathVariable("id") Integer playerId ,  Model model){
 
         model.addAttribute("player" , playerService.getById(playerId));

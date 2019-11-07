@@ -10,7 +10,7 @@ import java.util.Set;
 public class Competition {
 
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer competitionID;
 
     @NotNull
@@ -19,7 +19,12 @@ public class Competition {
     @NotNull
     private Date date;
 
-    @ManyToMany(mappedBy = "attendedCompetitions")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "player_competition",
+            joinColumns = @JoinColumn(name ="competitionID"),
+            inverseJoinColumns = @JoinColumn(name = "playerID")
+    )
     private Set<Player> participants;
 
     public Competition() {

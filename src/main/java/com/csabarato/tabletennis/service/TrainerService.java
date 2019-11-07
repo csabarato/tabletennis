@@ -12,5 +12,6 @@ public interface TrainerService {
 
     List<Trainer> findAllWherePlayerIsNull();
 
+    Trainer saveOrUpdate(Trainer trainerToSave);
 
 }

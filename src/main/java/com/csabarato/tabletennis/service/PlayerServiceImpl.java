@@ -27,13 +27,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player save(Player newPlayer) {
-        return playerRepository.save(newPlayer);
-    }
-
-    public Player update(Integer id, Player updatedPlayer){
-
-        Optional<Player> player = playerRepository.findById(id);
-        return  playerRepository.save(updatedPlayer);
+    public Player saveOrUpdate(Player playerToSave) {
+        return playerRepository.save(playerToSave);
     }
 }

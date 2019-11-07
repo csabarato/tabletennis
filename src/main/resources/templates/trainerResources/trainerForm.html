@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new Trainer</title>
+</head>
+<body>
+
+<form th:object="${trainer}" th:action="@{/trainers/add}" method="post" >
+
+    <input hidden type="number" th:field="*{trainerID}">
+
+    <label> Name</label>
+    <input type="text" th:field="*{name}" />
+
+    <select th:field="*{country.countryCode}">
+        <option value="0">select country</option>
+        <option th:each="c : ${countries}" th:value="${c.countryCode}" th:text="${c.name}"></option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

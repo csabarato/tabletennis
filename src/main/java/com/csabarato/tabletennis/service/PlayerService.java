@@ -10,8 +10,6 @@ public interface PlayerService {
 
     Player getById(Integer id);
 
-    Player save(Player newPlayer);
-
-    Player update(Integer id , Player player);
+    Player saveOrUpdate(Player playerToSave);
 
 }

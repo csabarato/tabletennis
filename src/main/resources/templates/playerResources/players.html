@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+<div> <a th:href="@{'/players/new'}">  Add new player </a> </div>
+<div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
 
 <table>
     <thead>
@@ -15,7 +17,6 @@
         <th> Trainer name </th>
     </tr>
     </thead>
-
     <tbody>
 
         <tr th:each="pl : ${players}">
@@ -23,10 +24,11 @@
             <td><span th:text="${pl.birthDate}"> bd </span></td>
             <td><span th:text="${pl.country.name}"> bd </span></td>
             <td><span th:text="${pl.trainer} ? ${pl.trainer.name} : Unassigned "> tr </span></td>
+            <td><a th:href="@{ '/players/update/' + ${pl.playerID } } "> Update </a></td>
         </tr>
     </tbody>
-
 </table>
+<br>
 
 </body>
 </html>

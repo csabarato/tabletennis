@@ -31,12 +31,7 @@ public class Player {
     @JoinColumn(name = "countrycode", nullable = false)
     private Country country;
 
-    @ManyToMany
-    @JoinTable(
-            name = "player_competition",
-            joinColumns = @JoinColumn(name ="playerID"),
-            inverseJoinColumns = @JoinColumn(name = "competitionID")
-    )
+    @ManyToMany(mappedBy = "participants")
     Set<Competition> attendedCompetitions;
 
     public Player(){}

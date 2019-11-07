@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 public class Trainer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer trainerID;
 
     @NotNull

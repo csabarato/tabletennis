@@ -30,4 +30,8 @@ public class TrainerServiceImpl implements TrainerService {
     public List<Trainer> findAllWherePlayerIsNull() {
         return trainerRepository.findAllByPlayerIsNull();
     }
+
+    public Trainer saveOrUpdate(Trainer trainerToSave){
+        return trainerRepository.save(trainerToSave);
+    }
 }
