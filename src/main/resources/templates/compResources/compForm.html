@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new competition</title>
+</head>
+<body>
+
+<form th:object="${comp}" th:action="@{/competitions/add}" method="post">
+
+    <input hidden th:field="*{competitionID}"/>
+
+    <label> Location </label>
+    <input type="text" th:field="*{location}">
+
+    <label> Date </label>
+    <input type="date" th:field="*{date}">
+
+    <button type="submit">Add competition </button>
+</form>
+
+
+</body>
+</html>

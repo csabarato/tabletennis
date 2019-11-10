@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div> <a th:href="@{'/players/list'}">  Players </a> </div>
+<div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
+<div> <a th:href="@{'/competitions/new'}"> Add Competition </a></div>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> Location </th>
+        <th> Date </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="c : ${comps}">
+        <td><span th:text="${c.location}"> n </span></td>
+        <td><span th:text="${c.date}"> bd </span></td>
+        <td><a th:href="@{ '/competitions/' + ${c.competitionID} + '/addPlayer' } "> Add player </a></td>
+        <td><a th:href="@{ '/competitions/' + ${c.competitionID} + '/removePlayer' } "> Remove player </a></td>
+        <td><a th:href="@{'/competitions/' + ${c.competitionID} + '/listPlayers' }"> Show  participants </a>  </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+</body>
+</html>

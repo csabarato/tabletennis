@@ -25,13 +25,13 @@ public class TrainerController {
     CountryService countryService;
 
     @RequestMapping(value = "/list" , method = RequestMethod.GET )
-    String listAllTrainers(Model model){
+    public String listAllTrainers(Model model){
         model.addAttribute("trainers", trainerService.getAll()) ;
     return "trainerResources/trainers";
     }
 
     @RequestMapping(value = "/add" , method = RequestMethod.POST)
-    String saveOrUpdateTrainer(@ModelAttribute Trainer trainerToSave ){
+    public String saveOrUpdateTrainer(@ModelAttribute Trainer trainerToSave ){
 
         String countryCode = trainerToSave.getCountry().getCountryCode();
         trainerToSave.setCountry(countryService.getByCountryCode(countryCode));
@@ -41,14 +41,14 @@ public class TrainerController {
 
     // GET mappings to return Forms to browser.
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    String getNewTrainerForm(Model model){
+    public String getNewTrainerForm(Model model){
         model.addAttribute("trainer" , new Trainer());
         model.addAttribute("countries", countryService.getCountries());
         return "trainerResources/trainerForm";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-    String getUpdateTrainerForm(@PathVariable("id") Integer trainerId ,  Model model){
+    public String getUpdateTrainerForm(@PathVariable("id") Integer trainerId ,  Model model){
 
         model.addAttribute("trainer" , trainerService.getById(trainerId));
         model.addAttribute("countries", countryService.getCountries());

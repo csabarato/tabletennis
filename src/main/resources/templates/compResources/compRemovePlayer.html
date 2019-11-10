@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add player to competition</title>
+</head>
+<body>
+
+<h2>Competition details: </h2>
+<h3>Location : <span th:text="${comp.location}"> n </span> </h3>
+<br>
+<h3> Date : <span th:text="${comp.date}"> bd </span> </h3>
+
+<br>
+
+<h3>Remove player from competition: </h3>
+<form th:object="${player}" th:action="@{ '/competitions/' + ${comp.competitionID} + '/removePlayer' }" method="post">
+
+    <select th:field="*{playerID}" class="form-control">
+        <option th:each="pl : ${players}"
+                th:value="${pl.playerID}"
+                th:text="${pl.name}">pl
+        </option>
+    </select>
+
+    <button type="submit">Remove</button>
+
+</form>
+
+</body>
+</html>

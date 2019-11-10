@@ -7,6 +7,7 @@
 <body>
 <div> <a th:href="@{'/players/new'}">  Add new player </a> </div>
 <div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
+<div> <a th:href="@{'/competitions/list'}"> Competitions </a></div>
 
 <table>
     <thead>
@@ -25,6 +26,8 @@
             <td><span th:text="${pl.country.name}"> bd </span></td>
             <td><span th:text="${pl.trainer} ? ${pl.trainer.name} : Unassigned "> tr </span></td>
             <td><a th:href="@{ '/players/update/' + ${pl.playerID } } "> Update </a></td>
+            <td><a th:href="@{ '/players/' + ${pl.playerID + '/attendances' } } "> Attendances </a></td>
+
         </tr>
     </tbody>
 </table>

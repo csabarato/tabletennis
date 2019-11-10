@@ -1,5 +1,7 @@
 package com.csabarato.tabletennis.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Competition {
     private String location;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date date;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -33,6 +36,10 @@ public class Competition {
     public Competition(@NotNull String location, @NotNull Date date) {
         this.location = location;
         this.date = date;
+    }
+
+    public void addParticipant(Player player){
+        participants.add(player);
     }
 
     public Integer getCompetitionID() {

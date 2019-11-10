@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.thymeleaf.model.IModel;
 
 @Controller
 @RequestMapping(value = "/players")
@@ -43,6 +44,13 @@ public class PlayerController {
         // save OR update !!!
         playerService.saveOrUpdate(playerToSave);
         return "redirect:list";
+    }
+
+    @RequestMapping(value = "/{id}/attendances", method = RequestMethod.GET)
+    public String getPlayerAttendances(@PathVariable("id") Integer id , Model model){
+
+        model.addAttribute("comps" , playerService.getById(id).getAttendedCompetitions());
+        return "compResources/competitions";
     }
 
     // GET mappings to return Forms to browser.
