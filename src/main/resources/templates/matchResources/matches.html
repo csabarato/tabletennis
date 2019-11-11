@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Matches</title>
+</head>
+<body>
+
+<h2>Competition details: </h2>
+<h3>Location : <span th:text="${comp.location}"> n </span> </h3>
+<br>
+<h3> Date : <span th:text="${comp.date}"> bd </span> </h3>
+
+<a th:href="@{'/competitions/' + ${comp.competitionID} + '/newMatch' } "> Add new result </a>
+
+<br>
+
+<h3> Matches </h3>
+
+<table>
+    <thead>
+        <tr>
+            <th> Home </th>
+            <th> Away </th>
+            <th> Result</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="m : ${matches}">
+            <td><span th:text="${m.player1.name }"> n </span></td>
+            <td><span th:text="${m.player2.name}"> bd </span></td>
+            <td><span th:text="${m.player1Point}"> bd </span> - </td>
+            <td><span th:text="${m.player2Point}"> bd </span></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

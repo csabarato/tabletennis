@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New match</title>
+</head>
+<body>
+
+<form th:object="${match}" th:action="@{'/competitions/' + ${comp.competitionID} + '/addMatch' }" method="post">
+
+    <select th:field="*{player1}">
+        <option th:each="pl : ${players}"
+                th:value="${pl.playerID}"
+                th:text="${pl.name}">pl
+        </option>
+    </select>
+
+    <select th:field="*{player2}">
+        <option th:each="pl : ${players}"
+                th:value="${pl.playerID}"
+                th:text="${pl.name}">pl
+        </option>
+    </select>
+
+    <input type="number" th:field="*{player1Point}">
+    <input type="number" th:field="*{player2Point}">
+
+    <button type="submit"> Add match details </button>
+
+</form>
+
+</body>
+</html>

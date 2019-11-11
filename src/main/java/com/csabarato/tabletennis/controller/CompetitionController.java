@@ -1,8 +1,10 @@
 package com.csabarato.tabletennis.controller;
 
 import com.csabarato.tabletennis.model.Competition;
+import com.csabarato.tabletennis.model.Match;
 import com.csabarato.tabletennis.model.Player;
 import com.csabarato.tabletennis.service.CompetitionService;
+import com.csabarato.tabletennis.service.MatchService;
 import com.csabarato.tabletennis.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class CompetitionController {
 
     @Autowired
     PlayerService playerService;
+
+    @Autowired
+    MatchService matchService;
 
     @RequestMapping(value = "/list" , method = RequestMethod.GET)
     public String listAllCompetitions(Model model){
@@ -57,6 +62,29 @@ public class CompetitionController {
         return "redirect:/competitions/list";
     }
 
+    @RequestMapping(value="/{id}/listMatches" , method = RequestMethod.GET)
+    public String listMatches(Model model, @PathVariable("id") Integer compId){
+
+        Competition competition = competitionService.getById(compId);
+
+        model.addAttribute("comp", competition);
+        model.addAttribute("matches" , competition.getMatches());
+
+        return "matchResources/matches";
+    }
+
+    @RequestMapping(value="/{id}/addMatch" , method = RequestMethod.POST)
+    public String addMatchToCompetition(@ModelAttribute Match match, @PathVariable("id") Integer compId){
+
+        Competition competition = competitionService.getById(compId);
+        match.setCompetition(competition);
+
+        matchService.saveOrUpdate(match);
+
+        return "redirect:/competitions/" + compId + "/listMatches";
+    }
+
+
     // GET mappings to return Forms to browser.
     @RequestMapping(value = "/{id}/addPlayer" , method = RequestMethod.GET)
     public String getAddPlayerToCompForm(@PathVariable("id") Integer compId,  Model model){
@@ -89,5 +117,17 @@ public class CompetitionController {
     public String getNewCompetitionForm(Model model){
         model.addAttribute("comp" , new Competition());
         return "compResources/compForm";
+    }
+
+    @RequestMapping(value = "{compId}/newMatch", method = RequestMethod.GET)
+    public String getNewMatchForm( @PathVariable("compId") Integer compId,  Model model){
+
+        Competition comp = competitionService.getById(compId);
+
+        model.addAttribute("comp" , comp);
+        model.addAttribute("match", new Match());
+        model.addAttribute("players", comp.getParticipants());
+
+        return "matchResources/matchForm";
     }
 }

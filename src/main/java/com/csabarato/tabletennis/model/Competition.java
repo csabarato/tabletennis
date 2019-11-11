@@ -30,6 +30,9 @@ public class Competition {
     )
     private Set<Player> participants;
 
+    @OneToMany(mappedBy = "competition")
+    private Set<Match> matches;
+
     public Competition() {
     }
 
@@ -72,5 +75,13 @@ public class Competition {
 
     public void setParticipants(Set<Player> participants) {
         this.participants = participants;
+    }
+
+    public Set<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Set<Match> matches) {
+        this.matches = matches;
     }
 }
