@@ -14,4 +14,6 @@ public interface TrainerService {
 
     Trainer saveOrUpdate(Trainer trainerToSave);
 
+    void deleteById(Integer id);
+
 }

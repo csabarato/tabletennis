@@ -40,6 +40,12 @@ public class CompetitionController {
         return "redirect:/competitions/list";
     }
 
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String deleteCompetition(@PathVariable("id") Integer id){
+        competitionService.delete(id);
+        return "redirect:/competitions/list";
+    }
+
     @RequestMapping(value = "/{id}/listPlayers" , method = RequestMethod.GET)
     public String listParticipants(@PathVariable("id") Integer compId , Model model ){
             model.addAttribute("players" , competitionService.getById(compId).getParticipants());

@@ -9,4 +9,6 @@ public interface CountryService {
     List<Country> getCountries();
 
     Country getByCountryCode(String countryCode);
+
+    Country saveOrUpdate(Country country);
 }

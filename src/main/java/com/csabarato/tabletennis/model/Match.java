@@ -11,11 +11,11 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer matchID;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "player1ID")
     private Player player1;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "player2ID" )
     private Player player2;
 

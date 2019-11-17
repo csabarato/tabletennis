@@ -9,6 +9,7 @@
 <div> <a th:href="@{'/players/list'}">  Players </a> </div>
 <div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
 <div> <a th:href="@{'/competitions/new'}"> Add Competition </a></div>
+<div> <a th:href="@{'/countries/list'}"> Countries </a></div>
 
 
 <table>
@@ -27,6 +28,7 @@
         <td><a th:href="@{ '/competitions/' + ${c.competitionID} + '/removePlayer' } "> Remove player </a></td>
         <td><a th:href="@{'/competitions/' + ${c.competitionID} + '/listPlayers' }"> Show  participants </a>  </td>
         <td><a th:href="@{'/competitions/' + ${c.competitionID} + '/listMatches' }"> Results </a>  </td>
+        <td><a th:href="@{'/competitions/' + ${c.competitionID} + '/delete' }"> Delete </a>  </td>
     </tr>
     </tbody>
 </table>

@@ -6,9 +6,10 @@
 </head>
 <body>
 
-<div> <a th:href="@{'/trainers/new'}">  Add new Trainer </a> </div>
 <div> <a th:href="@{'/players/list'}">  Players </a> </div>
+<div> <a th:href="@{'/trainers/new'}">  Add new Trainer </a> </div>
 <div> <a th:href="@{'/competitions/list'}"> Competitions </a></div>
+<div> <a th:href="@{'/countries/list'}"> Countries </a></div>
 
 <table>
     <thead>
@@ -26,6 +27,7 @@
         <td><span th:text="${t.country.name}"> c </span></td>
         <td><span th:text="${t.player} ? ${t.player.name} : Unassigned "> pl </span></td>
         <td><a th:href="@{ '/trainers/update/' + ${t.trainerID } } "> Update </a></td>
+        <td><a th:href="@{ '/trainers/delete/' + ${t.trainerID } } "> Delete </a></td>
     </tr>
     </tbody>
 

@@ -39,6 +39,14 @@ public class TrainerController {
         return "redirect:list";
     }
 
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteTrainerById(@PathVariable("id") Integer id){
+
+        trainerService.deleteById(id);
+
+        return "redirect:/trainers/list";
+    }
+
     // GET mappings to return Forms to browser.
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String getNewTrainerForm(Model model){

@@ -22,11 +22,11 @@ public class Competition {
     @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
-            name = "player_competition",
-            joinColumns = @JoinColumn(name ="competitionID"),
-            inverseJoinColumns = @JoinColumn(name = "playerID")
+            name = "comp_player",
+            joinColumns = @JoinColumn(name ="competition"),
+            inverseJoinColumns = @JoinColumn(name = "player")
     )
     private Set<Player> participants;
 

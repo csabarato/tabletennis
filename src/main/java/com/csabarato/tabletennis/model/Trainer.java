@@ -18,7 +18,7 @@ public class Trainer {
     @JoinColumn(name = "countrycode", nullable = false)
     private Country country;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER,  mappedBy = "trainer")
+    @OneToOne( mappedBy = "trainer", cascade = CascadeType.REFRESH)
     private Player player;
 
     public Trainer() {

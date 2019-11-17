@@ -1,8 +1,10 @@
 package com.csabarato.tabletennis.model;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.servlet.http.PushBuilder;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
@@ -23,7 +25,7 @@ public class Player {
     @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "trainerID")
     private Trainer trainer;
 
@@ -31,7 +33,7 @@ public class Player {
     @JoinColumn(name = "countrycode", nullable = false)
     private Country country;
 
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.REFRESH)
     Set<Competition> attendedCompetitions;
 
     public Player(){}

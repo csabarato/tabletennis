@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div> <a th:href="@{'/players/list'}">  Players </a> </div>
+<div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
+<div> <a th:href="@{'/competitions/list'}"> Competitions </a></div>
+<div> <a th:href="@{'/countries/new'}"> Add Country </a></div>
+
+<table>
+    <thead>
+    <tr>
+        <th> Country code </th>
+        <th> Country </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="c : ${countries}">
+        <td><span th:text="${c.countryCode }"> n </span></td>
+        <td><span th:text="${c.name }"> n </span></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+</body>
+</html>

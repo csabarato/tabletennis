@@ -8,6 +8,7 @@
 
 <form th:object="${match}" th:action="@{'/competitions/' + ${comp.competitionID} + '/addMatch' }" method="post">
 
+    <label><h3> Player 1 : </h3></label>
     <select th:field="*{player1}">
         <option th:each="pl : ${players}"
                 th:value="${pl.playerID}"
@@ -15,6 +16,8 @@
         </option>
     </select>
 
+    <br>
+    <label><h3> Player 2 : </h3></label>
     <select th:field="*{player2}">
         <option th:each="pl : ${players}"
                 th:value="${pl.playerID}"
@@ -22,6 +25,9 @@
         </option>
     </select>
 
+    <br>
+
+    <label> <h3> Result </h3></label>
     <input type="number" th:field="*{player1Point}">
     <input type="number" th:field="*{player2Point}">
 

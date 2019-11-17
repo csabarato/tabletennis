@@ -46,6 +46,12 @@ public class PlayerController {
         return "redirect:list";
     }
 
+    @RequestMapping(value = "/delete/{id}")
+    public String deletePlayerById(@PathVariable("id") Integer playerId){
+        playerService.deleteById(playerId);
+        return "redirect:/players/list";
+    }
+
     @RequestMapping(value = "/{id}/attendances", method = RequestMethod.GET)
     public String getPlayerAttendances(@PathVariable("id") Integer id , Model model){
 
@@ -72,5 +78,4 @@ public class PlayerController {
         model.addAttribute("trainers", trainerService.findAllWherePlayerIsNull());
         return "playerResources/playerForm";
     }
-
 }

@@ -26,5 +26,8 @@ public class CountryServiceImpl implements CountryService {
         return countryRepository.findCountryByCountryCode(countryCode);
     }
 
-
+    @Override
+    public Country saveOrUpdate(Country country) {
+        return countryRepository.save(country);
+    }
 }

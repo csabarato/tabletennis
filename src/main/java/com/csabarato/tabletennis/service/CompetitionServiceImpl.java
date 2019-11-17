@@ -56,4 +56,9 @@ public class CompetitionServiceImpl implements CompetitionService {
 
         return competition;
     }
+
+    @Override
+    public void delete(Integer compId) {
+        competitionRepository.deleteById(compId);
+    }
 }

@@ -12,6 +12,8 @@ public interface CompetitionService {
 
     Competition saveOrUpdate(Competition compToSave);
 
+    void delete(Integer compId);
+
     Competition addPlayerToCompetition(Integer competitionId , Integer playerId);
 
     Competition removePlayerFromCompetition(Integer competitionId, Integer playerId);

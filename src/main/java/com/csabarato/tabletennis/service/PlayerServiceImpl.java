@@ -1,6 +1,7 @@
 package com.csabarato.tabletennis.service;
 
 import com.csabarato.tabletennis.model.Player;
+import com.csabarato.tabletennis.model.Trainer;
 import com.csabarato.tabletennis.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,19 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Player saveOrUpdate(Player playerToSave) {
         return playerRepository.save(playerToSave);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        playerRepository.deleteById(id);
+    }
+
+    @Override
+    public void removeTrainerFromPlayer(Trainer trainer) {
+        Player player =playerRepository.findByTrainer(trainer);
+        if (player != null) {
+            player.setTrainer(null);
+            playerRepository.save(player);
+        }
     }
 }
