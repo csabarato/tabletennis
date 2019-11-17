@@ -1,6 +1,7 @@
 package com.csabarato.tabletennis.controller;
 
 import com.csabarato.tabletennis.model.Player;
+import com.csabarato.tabletennis.model.Trainer;
 import com.csabarato.tabletennis.service.CountryService;
 import com.csabarato.tabletennis.service.PlayerService;
 import com.csabarato.tabletennis.service.TrainerService;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.thymeleaf.model.IModel;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/players")
@@ -72,10 +74,18 @@ public class PlayerController {
     @RequestMapping(value = "/update/{id}" , method = RequestMethod.GET)
     public String getUpdatePlayerForm( @PathVariable("id") Integer playerId ,  Model model){
 
+        Player player = playerService.getById(playerId);
+
+        List<Trainer> trainers = trainerService.findAllWherePlayerIsNull();
+
+        if(player.getTrainer() != null){
+            trainers.add(player.getTrainer());
+        }
+
         model.addAttribute("player" , playerService.getById(playerId));
 
         model.addAttribute("countries" , countryService.getCountries());
-        model.addAttribute("trainers", trainerService.findAllWherePlayerIsNull());
+        model.addAttribute("trainers", trainers);
         return "playerResources/playerForm";
     }
 }
