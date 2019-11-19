@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.servlet.http.PushBuilder;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -91,5 +92,18 @@ public class Player {
 
     public void setAttendedCompetitions(Set<Competition> attendedCompetitions) {
         this.attendedCompetitions = attendedCompetitions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return playerID.equals(player.playerID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerID);
     }
 }
