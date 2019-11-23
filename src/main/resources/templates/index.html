@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Table Tennis League</title>
@@ -8,6 +8,10 @@
 
 <h1>Home page</h1>
 
+<div> <a th:href="@{'/players/list'}">  Players </a> </div>
+<div> <a th:href="@{'/trainers/list'}">  Trainers </a> </div>
+<div> <a th:href="@{'/competitions/list'}"> Competitions </a></div>
+<div> <a th:href="@{'/countries/list'}"> Countries </a></div>
 
 </body>
 
